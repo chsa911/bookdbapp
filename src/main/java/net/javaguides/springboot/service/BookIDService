@@ -1,0 +1,106 @@
+package net.javaguides.springboot.service;
+
+// Function to generate a number of seven digits
+// 1. KW Numeric Class Value of the 1. Character of the keyword = KW String eg. Illuminati = 4
+// 2.  Numeric Class Value of the 2. Character of the KW String eg eg. Illuminati = 5
+// 3.  Numeric Class Value of the Last Character of the KW String eg. Illuminati = 4
+// 4.  Length of the KW String till 9 eg. Illuminati = 9
+// 5.  By default 0 If KW length = >9 then value = KW length eg. Illuminati = 1
+// 6.  Position of the keyword in the title eg. Illuminati = 0
+// 7.  of words in the title eg. Illuminati = 1
+// 8.  Times Read By default 0 if read already > 1 read twice 2 eg. Illuminati = 1
+// 9.  Numeric class value of the 1 Character of the Authors Last Name eg. Illuminati = 0
+// 10.  language: Numeric Value of the language that the book is written in 0 = german 1 = english 2 = französisch 3 portug.
+// 11.  CompletionState: default 0 = completed 1 = not completed 2 = Wishlist
+// 12.  Type: 0 = Paperback, 1 = Hardcover
+
+// eg. Illuminati = 454.910.110.010
+
+
+import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Service;
+
+@Service
+public class bookIDService {
+    public int calculateBookID(@NotNull String str) {
+
+        //  1-6 Calculate the values for KW Nr 1-7
+        // Finding string length that will be added to the bookID and be used to find last character
+
+        char firstCharKW = str.charAt(0);
+        char secondCharKW = str.charAt(1);
+
+        int  firstLengthNumberKW = str.length();
+        char lastCharKW = str.charAt(firstLengthNumberKW - 1);
+        int  secondLengthNumberKW = 0;
+        int  kWPositionTitle = 0;
+
+        // If  firstLengthNumberKW > 9 then the number > 9 will be concatenated to the bookID If n = 9 or smaller a 0 will be added as last digit
+        if (firstLengthNumberKW < 9) {secondLengthNumberKW = 0;}
+
+        if (firstLengthNumberKW > 9) { secondLengthNumberKW = firstLengthNumberKW-9;}
+
+        int firstNumberN = Character.getNumericValue(firstCharKW) ;
+        int firstNumberG = firstNumberN / 2;
+        int secondNumberN = Character.getNumericValue(secondCharKW);
+        int secondNumberG  = secondNumberN /=2;
+        int lastNumberN = Character.getNumericValue(lastCharKW);
+        int lastNumberG  = lastNumberN /=2;
+
+        // Divide numeric value by 2 cut the rest
+
+        // Getting the values for the numbers out of the keyword 7 -11
+        int  numberWordsTitle = 1;
+        int  timesRead = 0;
+        char firstCharAuthorLastName = str.charAt(0);
+        int  firstCharALN = Character.getNumericValue(firstCharAuthorLastName);
+        int  firstCharALG = firstCharALN  /= 2;
+        int  language = 0;
+        int  completionState = 0;
+        int  type = 0;
+
+
+        // Convert the integers to string
+        // 1.  firstNumber: Numeric Class Value of the 1. Character of the keyword = KW String eg. Illuminati = 4
+        // 2.  secondNumber: Numeric Class Value of the 2. Character of the KW String eg eg. Illuminati = 5
+        // 3.  lastNumber: Numeric Class Value of the Last Character of the KW String eg. Illuminati = 4
+        // 4.  firstLengthNumberKW: Length of the KW String till 9 eg. Illuminati = 9
+        // 5.  secondLengthNumberKW: KW By default 0 If KW length = >9 then value = KW length eg. Illuminati = 1
+        // 6.  kWPositionTitle: Position of the keyword in the title eg. Illuminati = 0
+
+
+        String s1 = Integer.toString(firstNumberG);
+        String s2 = Integer.toString(secondNumberG);
+        String s3 = Integer.toString(lastNumberG);
+        String s4 = Integer.toString(firstLengthNumberKW);
+        String s5 = Integer.toString(secondLengthNumberKW);
+        String s6 = Integer.toString(kWPositionTitle);
+
+        // Other values
+        // 7.  numberWordsTitle: of words in the title eg. Illuminati = 1
+        // 8.  timesRead: Times Read By default 0 if read already > 1 read twice 2 eg. Illuminati = 1
+        // 9.  firstCharAuthorLastName: Numeric class value of the 1 Character of the Authors Last Name eg. Illuminati = 0
+        // 10.  language: Numeric Value of the language that the book is written in 0 = german 1 = english 2 = französisch 3 portug.
+        // 11.  completionState: Completion state. default 0 = completed 1 = not completed 2 = Wishlist
+        // 12.  type: 0 = Paperback, 1 = Hardcover
+
+        String s7 = Integer.toString(numberWordsTitle);
+        String s8 = Integer.toString(timesRead);
+        String s9 = Integer.toString(firstCharALG);
+        String s10 = Integer.toString(language);
+        String s11 = Integer.toString(completionState);
+        String s12 = Integer.toString(type);
+
+        // Concatenate the strings
+
+        String s = s1 + s2 + s3 + s4 + s5 + s6 + s7 + s8 + s9 + s10+ s11 + s12;
+
+        // Convert the concatenated string
+        // to integer
+        int bookID = Integer.parseInt(s);
+
+        return bookID;
+    }
+
+
+}
