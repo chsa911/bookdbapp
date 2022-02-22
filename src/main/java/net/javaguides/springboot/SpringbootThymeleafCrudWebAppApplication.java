@@ -10,4 +10,6 @@ public class SpringbootThymeleafCrudWebAppApplication {
 		SpringApplication.run(SpringbootThymeleafCrudWebAppApplication.class, args);
 	}
 
+
+
 }

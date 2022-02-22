@@ -21,8 +21,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 @Service
-public class bookIDService {
-    public int calculateBookID(@NotNull String str) {
+public class readingIDService {
+    public int calculateReadingID(@NotNull String str) {
 
         //  1-6 Calculate the values for KW Nr 1-7
         // Finding string length that will be added to the bookID and be used to find last character

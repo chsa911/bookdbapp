@@ -24,13 +24,28 @@
 						<a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
 							Keyword</a>
 					</th>
+
+
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
 							Author (Last Name)</a>
 					</th>
 					<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
 							Publisher</a>
+					</th>
+
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=bookpages&sortDir=' + ${reverseSortDir}}">
+							Bookpages</a>
+					</th>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=booktype&sortDir=' + ${reverseSortDir}}">
+							Booktype</a>
+					</th>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=completionstate&sortDir=' + ${reverseSortDir}}">
+							Completionstate</a>
 					</th>
 					<th> Actions </th>
 				</tr>
@@ -40,6 +55,10 @@
 					<td th:text="${employee.firstName}"></td>
 					<td th:text="${employee.lastName}"></td>
 					<td th:text="${employee.email}"></td>
+					<td th:text="${employee.bookpages}"></td>
+					<td th:text="${employee.booktype}"></td>
+					<td th:text="${employee.completionstate}"></td>
+
 					<td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
 					    <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
 					</td>
@@ -67,6 +86,9 @@
     				<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
 					<span th:unless="${currentPage < totalPages}">Last</span>
    				 </div>
+
+
+
 			</div>
 		</div>
 	</div>
